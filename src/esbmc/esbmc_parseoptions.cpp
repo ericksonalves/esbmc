@@ -916,9 +916,6 @@ int esbmc_parseoptionst::doit_k_induction_parallel()
     // 2. It couldn't find a proof
     for(BigInt k_step = 2; k_step <= max_k_step; k_step += k_step_inc)
     {
-      if(opts.get_bool_option("disable-forward-condition"))
-        break;
-
       bmct bmc(goto_functions, opts, context, ui_message_handler);
       set_verbosity_msg(bmc);
 
@@ -939,6 +936,9 @@ int esbmc_parseoptionst::doit_k_induction_parallel()
       {
         break;
       }
+
+      if(opts.get_bool_option("disable-forward-condition"))
+        break;
 
       // Send information to parent if no bug was found
       if(res == smt_convt::P_UNSATISFIABLE)
@@ -989,9 +989,6 @@ int esbmc_parseoptionst::doit_k_induction_parallel()
     // 2. It couldn't find a proof
     for(BigInt k_step = 2; k_step <= max_k_step; k_step += k_step_inc)
     {
-      if(opts.get_bool_option("disable-inductive-step"))
-        return true;
-
       bmct bmc(goto_functions, opts, context, ui_message_handler);
       set_verbosity_msg(bmc);
 
@@ -1012,6 +1009,9 @@ int esbmc_parseoptionst::doit_k_induction_parallel()
       {
         break;
       }
+
+      if(opts.get_bool_option("disable-inductive-step"))
+        break;
 
       // Send information to parent if no bug was found
       if(res == smt_convt::P_UNSATISFIABLE)
