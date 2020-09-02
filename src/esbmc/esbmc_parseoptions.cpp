@@ -554,6 +554,9 @@ int esbmc_parseoptionst::doit_k_induction_parallel()
   // Get the increment
   unsigned k_step_inc = strtoul(cmdline.getval("k-step"), nullptr, 10);
 
+  // set the context-bound verification parameters
+  set_context_bound_params();
+
   // All processes were created successfully
   switch(process_type)
   {
