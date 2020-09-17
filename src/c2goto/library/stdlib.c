@@ -7,6 +7,7 @@
 #undef atoi
 #undef atol
 #undef getenv
+#undef rand
 
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Winvalid-noreturn"
@@ -140,4 +141,12 @@ size_t strlcat(char *dst, const char *src, size_t siz)
   *d = '\0';
 
   return (dlen + (s - src)); /* count does not include NUL */
+}
+
+int rand(void)
+{
+__ESBMC_HIDE:;
+  int result = __VERIFIER_nondet_int();
+  __ESBMC_assume(result >= 0 && result <= 32767);
+  return result;
 }
